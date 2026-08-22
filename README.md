@@ -181,7 +181,7 @@ clustering and ranking candidate structures;
 analyzing interface hydrogen bonds and electrostatic interactions in greater detail;
 comparing alternative binder lengths;
 evaluating interface shape complementarity;
-and experimentally validating selected candidates.
+(and experimentally validating selected candidates.)
 ```
 # Conclusion
 This project demonstrates an end-to-end computational workflow for structure-guided de novo protein binder design, from target and hotspot selection through backbone generation, sequence design, structure prediction, and interface analysis.
