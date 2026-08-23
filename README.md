@@ -14,7 +14,7 @@ analyzing generated structures;
 comparing the best predicted design with the native PD-1–PD-L1 interface;
 interpreting interface contacts, hydrogen bonds, salt bridges, buried surface area, and interface PAE.
 
-# workflow
+# Workflow
 
 ```
 3BIK PD-L1 structure
@@ -122,66 +122,73 @@ This was important because it indicated that the design was engaging the intende
 ```
 # Native vs. Designed Interface Analysis
 The best design was compared with the native PD-1–PD-L1 interface in 3BIK.
+```
+| Metric                   | Native 3BIK | Best Design |
+| ------------------------ | ----------: | ----------: |
+| Contacts <4.5 Å          |          31 |          27 |
+| Contacts <3.5 Å          |          21 |          18 |
+| Hydrogen bonds           |          18 |           6 |
+| Buried surface area (Å²) |         920 |         873 |
+| Salt bridges             |           3 |           5 |
+```
+## Structural Interpretation
 
-## Metric
-```
-Contacts <4.5 Å
-  Native 3BIK: 31
-  Best Design: 27
-Contacts <3.5 Å
-  Native 3BIK: 21
-  Best Design: 18
-Hydrogen bonds
-  Native 3BIK: 18
-  Best Design: 6
-Buried surface area (Å²)
-  Native 3BIK: 920
-  Best Design: 873
-Salt bridges
- Native 3BIK: 3
-Best Design: 5
-```
-The comparison revealed several interesting differences.
-```
-The designed interface had a similar number of contacts and a similar buried surface area to the native interface:
-27 vs. 31 contacts within 4.5 Å
-873 vs. 920 Å² buried surface area
-```
-This suggests that the designed binder was capable of forming an interface of comparable overall size
-```
-However, the designed interface contained substantially fewer hydrogen bonds:
-Native: 18
-Designed: 6
-At the same time, the designed complex contained more salt bridges:
-Native: 3
-Designed: 5
-```
-One possible interpretation is that the designed binder adopts a different binding orientation or interaction network from the native PD-1 interface. The additional salt bridges may provide alternative electrostatic interactions, while the reduced hydrogen-bond network may indicate less optimal geometric complementarity.
-These observations are consistent with the moderate interface confidence indicated by the iPAE of 15.3 Å.
-Importantly, these structural metrics should be interpreted as computational evidence rather than proof of experimental binding.
+Structural comparison revealed an important difference between the native and designed interfaces.
+The native PD-1 structure in 3BIK presents a predominantly β-sheet architecture at the PD-L1 binding interface, whereas the designed binder generated in this study adopts a predominantly α-helical architecture.
 
-# Key Findings
-1. RFdiffusion generated compact de novo binder backbones against PD-L1.
-2. ProteinMPNN generated candidate sequences for the designed backbones.
-3. AlphaFold provided a means to evaluate the structural stability and predicted interfaces of the generated designs.
-4. The best design engaged multiple intended PD-L1 hotspot residues, including A56, A113, and A123.
-5. The designed interface had a buried surface area and contact count broadly comparable to the native PD-1–PD-L1 interface.
-6. The designed interface contained substantially fewer hydrogen bonds than the native complex and a different salt-bridge pattern.
-7. The best design achieved an iPAE of 15.3 Å, indicating that the interface remained less confidently predicted than desired.
-8. The results demonstrate both the potential and limitations of small-scale de novo binder design with limited computational sampling.
+This secondary-structure difference changes how the binder approaches and interacts with the PD-L1 surface. Although the designed binder engages several of the selected hotspot residues, its interaction network differs from the native PD-1–PD-L1 complex.
 
+The interface analysis supports this observation:
+
+The best design was compared with the native PD-1–PD-L1 interface in 3BIK.
+
+The designed binder therefore achieves a similar overall interface size, as indicated by contact counts and buried surface area, but forms a substantially different interaction network. In particular, the lower number of hydrogen bonds and increased number of salt bridges suggest that the designed binder does not reproduce the native interaction geometry.
+
+The difference in secondary-structure architecture is a potential explanation for this behavior. A predominantly α-helical binder may interact with the PD-L1 surface differently from the β-sheet architecture used by native PD-1.
+
+The best design achieved an interface PAE (iPAE) of 15.3 Å. Rather than interpreting this value alone, the structural comparison suggests that the moderate interface confidence may be related to differences in interface geometry and secondary-structure architecture.
+
+## Lessons Learned
+One of the main lessons from this design iteration was that targeting the correct hotspot residues does not necessarily reproduce the native binding mode.
+The best design contacted several intended PD-L1 hotspot residues, including A56, A113, and A123, but its α-helical architecture produced an interaction geometry different from the native β-sheet interface.
+This highlighted the importance of evaluating not only computational confidence metrics but also:
+```
+secondary-structure architecture;
+interface geometry;
+residue-level contacts;
+hydrogen-bond networks;
+salt bridges; and
+buried surface area.
+```
 # Limitations and Next Steps
 The main limitation of this study was sampling. Only a relatively small number of RFdiffusion backbones and ProteinMPNN sequences could be evaluated because the workflow was run using free Google Colab resources.
+
+A future design iteration will investigate secondary-structure conditioning in the RFdiffusion configuration, with the goal of generating β-sheet-containing binder architectures that may better complement the native PD-L1 binding surface.
+
+The next round will compare designs with different secondary-structure characteristics and evaluate whether a more β-sheet-like architecture improves:
 ```
-A larger design campaign would provide a broader exploration of backbone and sequence space.
-Potential next steps include:
-generating additional independent RFdiffusion batches;
-increasing sequence diversity for promising backbones;
-clustering and ranking candidate structures;
-analyzing interface hydrogen bonds and electrostatic interactions in greater detail;
-comparing alternative binder lengths;
-evaluating interface shape complementarity;
-(and experimentally validating selected candidates.)
+interface geometry;
+hydrogen-bonding interactions;
+hotspot engagement; and
+interface PAE.
+```
+Because the current study used a relatively small number of designs due to computational limitations, additional independent RFdiffusion sampling will also be considered.
+
+# Skills Demonstrated
+This project demonstrates practical experience with:
+```
+RFdiffusion
+ProteinMPNN
+AlphaFold
+ChimeraX
+protein-protein interface analysis
+structural hotspot identification
+de novo protein binder design
+computational structural evaluation
+interpretation of pLDDT, RMSD, and interface PAE
+hydrogen-bond and salt-bridge analysis
+buried surface area analysis
+iterative computational design and troubleshooting
 ```
 # Conclusion
 This project demonstrates an end-to-end computational workflow for structure-guided de novo protein binder design, from target and hotspot selection through backbone generation, sequence design, structure prediction, and interface analysis.
